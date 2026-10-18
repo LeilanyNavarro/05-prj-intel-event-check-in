@@ -56,6 +56,53 @@ function renderAttendees() {
 renderAttendees();
 
 function showGoalCelebration() {
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const confettiColors = ["#0071c5", "#00aeef", "#7ac943", "#ffd23f", "#f15a24"];
+    const confettiBurst = document.createElement("div");
+    const confettiCount = 48;
+    let finishedConfetti = 0;
+
+    confettiBurst.className = "confetti-burst";
+    confettiBurst.setAttribute("aria-hidden", "true");
+
+    for (let i = 0; i < confettiCount; i++) {
+      const confettiPiece = document.createElement("span");
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 100 + Math.random() * 220;
+
+      confettiPiece.className = "confetti-piece";
+      confettiPiece.style.setProperty(
+        "--confetti-x",
+        `${Math.cos(angle) * distance}px`,
+      );
+      confettiPiece.style.setProperty(
+        "--confetti-y",
+        `${Math.sin(angle) * distance}px`,
+      );
+      confettiPiece.style.setProperty(
+        "--confetti-rotation",
+        `${Math.random() * 720 - 360}deg`,
+      );
+      confettiPiece.style.setProperty(
+        "--confetti-color",
+        confettiColors[Math.floor(Math.random() * confettiColors.length)],
+      );
+      confettiPiece.style.setProperty(
+        "--confetti-delay",
+        `${Math.random() * 0.2}s`,
+      );
+      confettiPiece.addEventListener("animationend", function () {
+        finishedConfetti++;
+        if (finishedConfetti === confettiCount) {
+          confettiBurst.remove();
+        }
+      });
+      confettiBurst.appendChild(confettiPiece);
+    }
+
+    document.body.appendChild(confettiBurst);
+  }
+
   const teamCards = document.querySelectorAll(".team-card");
   let highestTeamCount = 0;
 
