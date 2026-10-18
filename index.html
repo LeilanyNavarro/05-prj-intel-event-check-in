@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -81,6 +81,22 @@
           </div>
         </div>
       </div>
+
+      <section class="attendee-list" aria-labelledby="attendeeListHeading">
+        <div class="attendee-list-header">
+          <h3 id="attendeeListHeading">Checked-In Attendees</h3>
+          <span id="attendeeListCount">0</span>
+        </div>
+        <table class="attendee-table">
+          <thead>
+            <tr>
+              <th scope="col">Attendee</th>
+              <th scope="col">Team</th>
+            </tr>
+          </thead>
+          <tbody id="attendeeListBody"></tbody>
+        </table>
+      </section>
     </div>
 
     <footer class="footer">
